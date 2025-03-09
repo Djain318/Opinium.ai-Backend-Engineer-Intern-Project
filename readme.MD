@@ -144,4 +144,13 @@ pip install -r requirements.txt
 ```sh
 uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
+### **How I approach to solve the Problem ?**  
 
+I started by understanding the requirements, which involved building a FastAPI backend that fetches data from multiple APIs, processes it, and provides insights on users, transactions, and products. 
+- For data fetching and transformation, I used `requests` to get data from external APIs and applied a decorator (`transform_response`) to standardize the format, adding metadata and timestamps.  
+- To process the data efficiently, I created lookup dictionaries for users and products, then enriched transactions by merging them with relevant details.  
+- For insights, I calculated total spending per user, identified the most popular product category, and computed the average transaction value.  
+- FastAPI endpoints were set up to fetch raw data (`/data/{entity_type}`) and provide insights on user spending (`/insights/user`) and popular product categories (`/insights/product`).  
+- To optimize performance, I made fetched data global to avoid redundant API calls. Debugging included fixing issues like `AttributeError: 'tuple' object has no attribute 'get'` by ensuring correct data structures.  
+
+Finally, for deployment, I considered Render.
