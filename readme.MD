@@ -70,6 +70,31 @@ GET /data/{entity_type}
 - Example request:
   ```http
   GET /data/product
+
+  Responce:
+    [
+      {
+    "entity_id": "product-292f410a-ed0a-4732-a390-31da95e9b8dc",
+    "entity_type": "product",
+    "timestamp": "2025-03-09T02:11:16.011688+00:00",
+    "data": {
+      "id": 1,
+      "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+      "price": 109.95,
+      "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+      "category": "men's clothing",
+      "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+      "rating": {
+        "rate": 3.9,
+        "count": 120
+      }
+    },
+    "metadata": {
+      "source": "https://fakestoreapi.com/products",
+      "processed_at": "2025-03-09T02:11:16.011702+00:00"
+    }
+  }
+  ]
   ```
 
 ### **2. User Spending Insights**
@@ -109,6 +134,24 @@ GET /insights/products
   }
   ```
 
+### **4. Test the Endpoints Using Swagger UI**
+
+FastAPI provides an interactive API documentation using Swagger UI. Once the server is running:
+
+- Open your browser and go to: `http://127.0.0.1:8000/docs`
+- You can interact with all the API endpoints directly from this interface.
+
+Alternatively, you can use Redoc:
+
+- Open `http://127.0.0.1:8000/redoc`
+
+#### Swagger UI Preview
+
+<p align="center">
+  <img src="app/Public/Swagger.png" alt="Swagger UI Screenshot">
+</p>
+
+
 ## Project Setup Instructions
 
 ### **1. Clone the Repository**
@@ -118,11 +161,10 @@ git clone <repository-url>
 cd <repository-name>
 ```
 
-### **2. Create a Virtual Environment** (optional but recommended)
-
+### **2. Create a Virtual Environment**
 ```sh
 python -m venv .venv
-source .venv/bin/activate  # On Windows use: .venv\Scripts\activate
+On Windows use: .venv\Scripts\activate #on ios use source .venv/bin/activate  # 
 ```
 
 ### **3. Install Dependencies**
@@ -138,19 +180,8 @@ pip install -r requirements.txt
 Execute the following command to start the FastAPI server:
 
 ```sh
-uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+uvicorn main:app --reload
 ```
-
-### **5. Test the Endpoints Using Swagger UI**
-
-FastAPI provides an interactive API documentation using Swagger UI. Once the server is running:
-
-- Open your browser and go to: `http://127.0.0.1:8000/docs`
-- You can interact with all the API endpoints directly from this interface.
-
-Alternatively, you can use Redoc:
-
-- Open `http://127.0.0.1:8000/redoc`
 
 ## File Structure
 
@@ -158,7 +189,8 @@ Alternatively, you can use Redoc:
 📂 project_root/
 ├── 📂 .venv/               # Virtual environment (optional)
 ├── 📂 app/
-│   ├── apicalling.py      # Functions to fetch and transform data
+│   ├── api_calling.py      # Functions to fetch and transform data
+│   ├── 📂 public/         # Contains Swagger UI screenshot
 ├── main.py                # FastAPI application entry point
 ├── .gitignore             # Git ignore file
 ├── README.md              # Documentation
@@ -175,6 +207,44 @@ Alternatively, you can use Redoc:
    - Product category popularity is analyzed.
 4. **API Development**: Implements FastAPI endpoints to expose processed data and insights.
 
+## 🚀 Data Pipeline Architecture Overview
+
+### **1️⃣ Data Sources (Extract)**
+- Fetches data from three external APIs:
+  - **Products:** `https://fakestoreapi.com/products`
+  - **Transactions:** `https://my.api.mockaroo.com/orders.json?key=e49e6840`
+  - **Users:** `https://randomuser.me/api/?results=20`
+- Uses a decorator (`@transform_response`) to:
+  - Assign **UUIDs** for uniqueness
+  - Attach **timestamps & metadata**
+  - Maintain a **consistent structure**
+
+### **2️⃣ Data Transformation (Enrichment)**
+- **Product Enrichment** → Maps transactions to products (`parcel_id`)
+- **User Enrichment** → Matches transactions to users (`user_phone`)
+- Uses **dictionary-based lookups (`O(1)`)** for efficiency
+
+### **3️⃣ Data Insights (Analytics Layer)**
+- **User Analytics:**
+  - Calculate **total spending per user**
+  - Compute **average transaction value**
+- **Product Analytics:**
+  - Identify **most popular product category**
+  - Compute **purchase count per category**
+
+### **4️⃣ API Endpoints (Load & Serve)**
+- **`/data/{entity_type}`** → Fetch raw data (products, users, transactions)
+- **`/insights/user`** → Returns total spending per user
+- **`/insights/product`** → Returns most popular product category & count
+
+### **5️⃣ Performance Optimizations**
+- **Single API Calls** → Fetches data **once per request**  
+- **Fast Lookups** → Uses **dictionary-based mappings**  
+- **Modular Design** → Functions are **independent & scalable**  
+
+**Scalable, modular, and efficient! 🚀🔥**
+
+
 ## Error Handling
 
 - **API failures**: Uses exception handling (`try-except`) to catch request errors.
@@ -186,11 +256,5 @@ Alternatively, you can use Redoc:
 - Introduce caching mechanisms to optimize API response time.
 - Implement authentication and authorization mechanisms for data security.
 
-## Contact
 
-For any queries, reach out to `chetan@opinium.ai`.
-
----
-
-This README provides an overview, setup guide, API documentation, and a brief implementation summary to help understand and run the project effectively.
 
