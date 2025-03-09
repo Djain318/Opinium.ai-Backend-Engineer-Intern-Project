@@ -8,12 +8,6 @@
 
 This project implements a data transformation pipeline that fetches raw event data from multiple public APIs, normalizes and enriches it using business rules, and provides an API to query the processed data.
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Python-3.8%2B-blue" alt="Python Version">
-  <img src="https://img.shields.io/badge/FastAPI-0.95.0-green" alt="FastAPI Version">
-  <img src="https://img.shields.io/badge/uvicorn-0.23.0-orange" alt="Uvicorn Version">
-</p>
-
 ## 🚀 Features
 
 - Fetches data from three public sources:
@@ -34,16 +28,19 @@ This project implements a data transformation pipeline that fetches raw event da
 The following public APIs are used:
 
 **1️⃣ Products API**: [FakeStoreAPI](https://fakestoreapi.com/products)
-   - Endpoint: `https://fakestoreapi.com/products`
-   - Represents the product catalog.
+
+- Endpoint: `https://fakestoreapi.com/products`
+- Represents the product catalog.
 
 **2️⃣ Users API**: [RandomUser API](https://randomuser.me/api/?results=20)
-   - Endpoint: `https://randomuser.me/api/?results=20`
-   - Represents user profiles.
-   
+
+- Endpoint: `https://randomuser.me/api/?results=20`
+- Represents user profiles.
+
 **3️⃣ Transactions API**: [Mockaroo API](https://my.api.mockaroo.com/orders.json?key=e49e6840)
-   - Endpoint: `https://my.api.mockaroo.com/orders.json?key=e49e6840`
-   - Represents purchase transactions.
+
+- Endpoint: `https://my.api.mockaroo.com/orders.json?key=e49e6840`
+- Represents purchase transactions.
 
 ## 🚀 Data Transformation
 
@@ -74,7 +71,7 @@ GET /data/{entity_type}
 
 - Fetches processed data based on entity type (`product`, `user`, or `transaction`).
 - Hosted API Endpoint:
-  [https://opinium-ai-backend-engineer-intern.onrender.com/data/{entity_type}](https://opinium-ai-backend-engineer-intern.onrender.com/data/{entity_type})
+  [https://opinium-ai-backend-engineer-intern.onrender.com/data/{entity\_type}](https://opinium-ai-backend-engineer-intern.onrender.com/data/{entity_type})
 
 ### **2️⃣ User Spending Insights**
 
@@ -91,6 +88,7 @@ GET /insights/users
 ```http
 GET /insights/products
 ```
+
 - Identifies the most popular product categories.
 - Hosted API Endpoint:
   [https://opinium-ai-backend-engineer-intern.onrender.com/insights/products](https://opinium-ai-backend-engineer-intern.onrender.com/insights/products)
@@ -108,10 +106,6 @@ Alternatively, you can use Redoc:
 
 #### Swagger UI Preview
 
-<p align="center">
-  <img src="app/public/Swagger.png" alt="Swagger UI Screenshot">
-</p>
-
 ## 🚀 Project Setup Instructions
 
 ### **1️⃣ Clone the Repository**
@@ -122,25 +116,32 @@ cd Opinium.ai-Backend-Engineer-Intern-Project
 ```
 
 ### **2️⃣ Create a Virtual Environment**
+
 ```sh
 python -m venv .venv
 ```
+
 On Windows:
+
 ```sh
 .venv\Scripts\activate
 ```
+
 On macOS/Linux:
+
 ```sh
 source .venv/bin/activate
 ```
 
 ### **3️⃣ Install Dependencies**
+
 ```sh
 pip install -r requirements.txt
 ```
 
 ### **4️⃣ Run the Application**
+
 ```sh
-uvicorn main:app --reload
+uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
