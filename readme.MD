@@ -78,31 +78,72 @@ GET /data/{entity_type}
  
 ```json 
 { 
-  "entity_id": "user-3f159cd2-80ec-4d8c-918f-ace69f416f7d", 
-  "entity_type": "user", 
-  "timestamp": "2025-03-09T11:27:54.463526+00:00", 
-  "data": { 
-    "gender": "male", 
-    "name": { "title": "Mr", "first": "Aleksi", "last": "Ojala" }, 
-    "location": { 
-      "street": { "number": 6747, "name": "Hatanpään Valtatie" }, 
-      "city": "Koski", 
-      "state": "Lapland", 
-      "country": "Finland", 
-      "postcode": 88333, 
-      "coordinates": { "latitude": "-21.7129", "longitude": "-140.9710" }, 
-      "timezone": { "offset": "+2:00", "description": "Kaliningrad, South Africa" } 
-    }, 
-    "email": "aleksi.ojala@example.com", 
-    "dob": { "date": "1982-12-18T00:07:47.343Z", "age": 42 }, 
-    "phone": "08-982-487", 
-    "nat": "FI" 
-  }, 
-  "metadata": { 
-    "source": "https://randomuser.me/api/?results=20", 
-    "processed_at": "2025-03-09T11:27:54.463578+00:00" 
-  } 
-} 
+  
+  {
+    "entity_id": "user-3f159cd2-80ec-4d8c-918f-ace69f416f7d",
+    "entity_type": "user",
+    "timestamp": "2025-03-09T11:27:54.463526+00:00",
+    "data": {
+      "gender": "male",
+      "name": {
+        "title": "Mr",
+        "first": "Aleksi",
+        "last": "Ojala"
+      },
+      "location": {
+        "street": {
+          "number": 6747,
+          "name": "Hatanpään Valtatie"
+        },
+        "city": "Koski",
+        "state": "Lapland",
+        "country": "Finland",
+        "postcode": 88333,
+        "coordinates": {
+          "latitude": "-21.7129",
+          "longitude": "-140.9710"
+        },
+        "timezone": {
+          "offset": "+2:00",
+          "description": "Kaliningrad, South Africa"
+        }
+      },
+      "email": "aleksi.ojala@example.com",
+      "login": {
+        "uuid": "1a8a254d-3308-4936-a8f9-ca15cfd46eb2",
+        "username": "yellowmeercat778",
+        "password": "keisha",
+        "salt": "mmcGKnAQ",
+        "md5": "96d14b84f0017bb0cea3734c608f0cb4",
+        "sha1": "737bc0578261ad1ea9dcb49e6e3e434dcec4f696",
+        "sha256": "8c149eb701c2e68989e377ca2f5151e61acb494acd073b7b8ae2f4c1299406c3"
+      },
+      "dob": {
+        "date": "1982-12-18T00:07:47.343Z",
+        "age": 42
+      },
+      "registered": {
+        "date": "2004-06-12T05:27:10.072Z",
+        "age": 20
+      },
+      "phone": "08-982-487",
+      "cell": "041-932-92-04",
+      "id": {
+        "name": "HETU",
+        "value": "NaNNA815undefined"
+      },
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/men/31.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/men/31.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/31.jpg"
+      },
+      "nat": "FI"
+    },
+    "metadata": {
+      "source": "https://randomuser.me/api/?results=20",
+      "processed_at": "2025-03-09T11:27:54.463578+00:00"
+    }
+  },
 ``` 
  
 ### **2️⃣ User Spending Insights** 
