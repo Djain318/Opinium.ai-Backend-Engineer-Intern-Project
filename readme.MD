@@ -12,6 +12,12 @@ This project implements a data transformation pipeline that fetches raw event da
 ![Uvicorn](https://img.shields.io/badge/Uvicorn-0.29.0-ff69b4?style=flat&logo=python)  
 ![Requests](https://img.shields.io/badge/Requests-2.31.0-007ec6?style=flat&logo=python)  
 
+<p align="center">
+  <img src="https://img.shields.io/badge/FastAPI-0.110.0-009688?style=flat&logo=fastapi">
+  <img src="https://img.shields.io/badge/Uvicorn-0.29.0-ff69b4?style=flat&logo=python">
+  <img src="https://img.shields.io/badge/Requests-2.31.0-007ec6?style=flat&logo=python">
+</p>
+
 
 ## 🚀 Features 
  
