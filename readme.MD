@@ -73,9 +73,10 @@ GET /data/{entity_type}
 - Hosted API Endpoint: 
   [https://opinium-ai-backend-engineer-intern.onrender.com/data/{entity\_type}](https://opinium-ai-backend-engineer-intern.onrender.com/data/{entity_type}) 
  
-#### Example Response for ```http GET /data/user```
-                                                                 
- 
+#### Example Response for 
+```http 
+GET /data/user
+```                                       
 ```json 
 { 
   
