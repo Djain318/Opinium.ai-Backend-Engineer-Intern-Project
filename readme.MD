@@ -144,7 +144,7 @@ pip install -r requirements.txt
 ```sh
 uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
-### **How I approach to solve the Problem ?**  
+## 🚀 **How I approach to solve the Problem ?**  
 
 I started by understanding the requirements, which involved building a FastAPI backend that fetches data from multiple APIs, processes it, and provides insights on users, transactions, and products. 
 - For data fetching and transformation, I used `requests` to get data from external APIs and applied a decorator (`transform_response`) to standardize the format, adding metadata and timestamps.  
