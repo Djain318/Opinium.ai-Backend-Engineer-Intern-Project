@@ -7,7 +7,12 @@
 ## 🚀 Overview 
  
 This project implements a data transformation pipeline that fetches raw event data from multiple public APIs, normalizes and enriches it using business rules, and provides an API to query the processed data. 
- 
+
+![FastAPI](https://img.shields.io/badge/FastAPI-0.110.0-009688?style=flat&logo=fastapi)  
+![Uvicorn](https://img.shields.io/badge/Uvicorn-0.29.0-ff69b4?style=flat&logo=python)  
+![Requests](https://img.shields.io/badge/Requests-2.31.0-007ec6?style=flat&logo=python)  
+
+
 ## 🚀 Features 
  
 - Fetches data from three public sources: 
