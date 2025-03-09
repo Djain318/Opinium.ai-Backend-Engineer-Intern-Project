@@ -179,7 +179,7 @@ Alternatively, you can use Redoc:
 - Open `http://127.0.0.1:8000/redoc` 
  
 #### Swagger UI Preview
-![Swagger UI](app/public/Swagger.png)
+![Swagger UI](app/Public/Swagger.png)
  
 ## 🚀 Project Setup Instructions 
  
