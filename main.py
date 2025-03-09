@@ -39,7 +39,7 @@ def get_data(entity_type: str):
     return {"error": "Invalid entity type"}
 
 # Endpoint to analyze and return user spending insights
-@app.get("/insights/user")
+@app.get("/insights/users")
 def get_user_insights():
     """
     Calculate and return total spending per user.
@@ -50,7 +50,7 @@ def get_user_insights():
     return {"user_spending": calculate_total_spending(enriched_data_users)}
 
 # Endpoint to identify the most popular product category
-@app.get("/insights/product")
+@app.get("/insights/products")
 def get_product_insights():
     """
     Determine the most popular product category based on transactions.

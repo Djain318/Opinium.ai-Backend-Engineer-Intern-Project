@@ -61,12 +61,9 @@ def enrich_transactions_with_products(transactions, products):
     product_lookup = {str(product["data"]["id"]): product["data"] for product in products}
 
     for transaction in transactions:
-        # Get the parcel_id from the transaction data
         parcel_id = str(transaction["data"].get("parcel_id")) 
-        # Retrieve the corresponding product details using the parcel_id
         product_details = product_lookup.get(parcel_id, {})
 
-        # Add product details to the transaction data
         transaction["data"]["product_details"] = product_details
 
     return transactions
@@ -77,12 +74,9 @@ def enrich_transactions_with_users(transactions, users):
     user_lookup = {user["data"]["phone"]: user["data"] for user in users}
 
     for transaction in transactions:
-        # Get the user_phone from the transaction data
         user_phone = transaction["data"].get("user_phone") 
-        # Retrieve the corresponding user details using the phone number
         user_details = user_lookup.get(user_phone, {}) 
 
-        # Add user details to the transaction data
         transaction["data"]["user_details"] = user_details
 
     return transactions
@@ -93,11 +87,8 @@ def calculate_total_spending(final_transactions):
     user_spending = defaultdict(float)
 
     for transaction in final_transactions:
-        # Get the user_phone from the transaction data
         user_phone = transaction["data"].get("user_phone") 
-        # Get the price of the product from the transaction data
         product_price = transaction["data"].get("product_details", {}).get("price", 0) 
-        # Accumulate spending for each user based on their phone number
         user_spending[user_phone] += product_price  
 
     return dict(user_spending)
@@ -111,7 +102,6 @@ def get_most_popular_category(final_transactions):
         # Retrieve the category from product details in each transaction
         category = transaction["data"].get("product_details", {}).get("category") 
         if category:
-            # Increment the count for the category
             category_count[category] += 1 
     
     return category_count
@@ -127,10 +117,8 @@ def calculate_average_transaction_value(transactions):
         product_details = transaction["data"].get("product_details", {})
         product_price = product_details.get("price", 0) 
         
-        # Accumulate the total spending across all transactions
         total_spending += product_price 
 
-    # Calculate the average transaction value, or 0 if no transactions exist
     average_value = total_spending / total_transactions if total_transactions > 0 else 0
 
     return average_value
@@ -141,12 +129,12 @@ if __name__ == "__main__":
     transactions = fetch_transactions()
 
     enriched_data_products = enrich_transactions_with_products(transactions, products)
-    # print("Here is your enriched data", enriched_data_products)
+    print("Here is your enriched data", enriched_data_products)
     enriched_data_users = enrich_transactions_with_users(transactions, users)
-    # print("Here is your enriched data", enriched_data_users)
+    print("Here is your enriched data", enriched_data_users)
 
     total_spending = calculate_total_spending(enriched_data_users)
-    # print("Total spending per user:", total_spending)
+    print("Total spending per user:", total_spending)
 
     category_data = get_most_popular_category(enriched_data_users)
     if category_data:
@@ -156,4 +144,4 @@ if __name__ == "__main__":
         print({"most_popular_category": None, "purchase_count": 0})
     
     average_transaction_value = calculate_average_transaction_value(enriched_data_users)
-    # print(f"Average transaction value: {average_transaction_value}")
+    print(f"Average transaction value: {average_transaction_value}")
