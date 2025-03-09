@@ -226,4 +226,5 @@ I started by understanding the requirements, which involved building a FastAPI b
 - For insights, I calculated total spending per user, identified the most popular product category, and computed the average transaction value.   
 - FastAPI endpoints were set up to fetch raw data (`/data/{entity_type}`) and provide insights on user spending (`/insights/user`) and popular product categories (`/insights/product`).   
 - To optimize performance, I made fetched data global to avoid redundant API calls. Debugging included fixing issues like `AttributeError: 'tuple' object has no attribute 'get'` by ensuring correct data structures.   
+
 Finally, for deployment, I considered Render.
